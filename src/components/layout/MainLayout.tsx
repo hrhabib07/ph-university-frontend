@@ -1,57 +1,7 @@
-import { Layout, Menu, MenuProps } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
-import { adminPaths, adminRoutes } from "../../routes/admin.routes";
+import { Layout, Menu } from "antd";
+import { Outlet } from "react-router-dom";
+import { adminRoutes, adminSidebarItems } from "../../routes/admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
-
-interface MenuItem {
-  key: string;
-  label: JSX.Element | string;
-  children?: MenuItem[];
-}
-
-function convertMenuData(data: MenuItem[]): MenuItem[] {
-  return data.map((item) => {
-    const newItem: MenuItem = {
-      key: item.name,
-      label: item.children ? item.name : <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
-    };
-
-    if (item.children) {
-      newItem.children = convertMenuData(item.children);
-    }
-
-    return newItem;
-  });
-}
-
-const convertedData: MenuItem[] = convertMenuData(adminPaths);
-console.log("converted data here", convertedData);
-
-const items: MenuProps["items"] = convertedData;
-// [
-//   {
-//     key: "Dashboard",
-//     label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
-//   },
-//   {
-//     key: "User Management",
-//     label: "User Management",
-//     children: [
-//       {
-//         key: "Create Admin",
-//         label: <NavLink to="/admin/create-admin">Create Admin</NavLink>,
-//       },
-//       {
-//         key: "Create Faculty",
-//         label: <NavLink to="/admin/create-faculty">Create Faculty</NavLink>,
-//       },
-//       {
-//         key: "Create Student",
-//         label: <NavLink to="/admin/create-student">Create Student</NavLink>,
-//       },
-//     ],
-//   },
-// ];
 
 const MainLayout = () => {
   console.log(adminRoutes);
@@ -79,7 +29,7 @@ const MainLayout = () => {
         >
           <h2>PH University</h2>
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={items} />
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={adminSidebarItems} />
       </Sider>
       <Layout>
         <Header style={{ padding: 0 }} />

@@ -4,6 +4,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import { adminRoutes } from "./admin.routes";
 
+console.log("admin routes", adminRoutes);
 const router = createBrowserRouter([
   {
     path: "/home",
