@@ -1,33 +1,60 @@
 import { Layout, Menu, MenuProps } from "antd";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+import { adminPaths, adminRoutes } from "../../routes/admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
 
-const items: MenuProps["items"] = [
-  {
-    key: "1",
-    label: "Dashboard",
-  },
-  {
-    key: "2",
-    label: "Profile",
-  },
-  {
-    key: "2",
-    label: "User Management",
-    children: [
-      {
-        key: "31",
-        label: "Create Admin",
-      },
-      {
-        key: "32",
-        label: "Create Student",
-      },
-    ],
-  },
-];
+interface MenuItem {
+  key: string;
+  label: JSX.Element | string;
+  children?: MenuItem[];
+}
+
+function convertMenuData(data: MenuItem[]): MenuItem[] {
+  return data.map((item) => {
+    const newItem: MenuItem = {
+      key: item.name,
+      label: item.children ? item.name : <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
+    };
+
+    if (item.children) {
+      newItem.children = convertMenuData(item.children);
+    }
+
+    return newItem;
+  });
+}
+
+const convertedData: MenuItem[] = convertMenuData(adminPaths);
+console.log("converted data here", convertedData);
+
+const items: MenuProps["items"] = convertedData;
+// [
+//   {
+//     key: "Dashboard",
+//     label: <NavLink to="/admin/dashboard">Dashboard</NavLink>,
+//   },
+//   {
+//     key: "User Management",
+//     label: "User Management",
+//     children: [
+//       {
+//         key: "Create Admin",
+//         label: <NavLink to="/admin/create-admin">Create Admin</NavLink>,
+//       },
+//       {
+//         key: "Create Faculty",
+//         label: <NavLink to="/admin/create-faculty">Create Faculty</NavLink>,
+//       },
+//       {
+//         key: "Create Student",
+//         label: <NavLink to="/admin/create-student">Create Student</NavLink>,
+//       },
+//     ],
+//   },
+// ];
 
 const MainLayout = () => {
+  console.log(adminRoutes);
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
