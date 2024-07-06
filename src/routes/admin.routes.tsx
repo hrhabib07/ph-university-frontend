@@ -1,22 +1,10 @@
-import { ReactNode } from "react";
 import AdminDashboard from "../pages/Admin/AdminDashboard";
 import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateFaculty from "../pages/Admin/CreateFaculty";
 import CreateStudent from "../pages/Admin/CreateStudent";
-import { NavLink } from "react-router-dom";
+import { TUserPath } from "../types";
 
-type TRoute = {
-  path: string;
-  element: ReactNode;
-};
-type TPath = {
-  name: string;
-  path?: string;
-  element?: ReactNode;
-  children?: TPath[];
-};
-
-export const adminPaths: TPath[] = [
+export const adminPaths: TUserPath[] = [
   {
     name: "Dashboard",
     path: "dashboard",
@@ -48,44 +36,3 @@ export const adminPaths: TPath[] = [
     ],
   },
 ];
-
-export const adminRoutes = adminPaths.reduce((acc: TRoute[], item) => {
-  if (item.path && item.element) {
-    acc.push({
-      path: item.path,
-      element: item.element,
-    });
-  }
-  if (item.children) {
-    item.children.forEach((child) => {
-      acc.push({
-        path: child.path as string,
-        element: child.element,
-      });
-    });
-  }
-  return acc;
-}, []);
-
-interface MenuItem {
-  key: string;
-  label: ReactNode | string;
-  children?: MenuItem[];
-}
-
-function convertMenuData(data: TPath[]): MenuItem[] {
-  return data.map((item) => {
-    const newItem: MenuItem = {
-      key: item.name,
-      label: item.children ? item.name : <NavLink to={`/admin/${item.path}`}>{item.name}</NavLink>,
-    };
-
-    if (item.children) {
-      newItem.children = convertMenuData(item.children);
-    }
-
-    return newItem;
-  });
-}
-
-export const adminSidebarItems: MenuItem[] = convertMenuData(adminPaths);

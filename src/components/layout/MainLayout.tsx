@@ -1,10 +1,10 @@
 import { Layout, Menu } from "antd";
 import { Outlet } from "react-router-dom";
-import { adminRoutes, adminSidebarItems } from "../../routes/admin.routes";
+import { sidebarItemsGenerator } from "../../utils/sidebarItemsGenerator";
+import { adminPaths } from "../../routes/admin.routes";
 const { Header, Content, Footer, Sider } = Layout;
 
 const MainLayout = () => {
-  console.log(adminRoutes);
   return (
     <Layout style={{ height: "100vh" }}>
       <Sider
@@ -29,7 +29,12 @@ const MainLayout = () => {
         >
           <h2>PH University</h2>
         </div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={adminSidebarItems} />
+        <Menu
+          theme="dark"
+          mode="inline"
+          defaultSelectedKeys={["4"]}
+          items={sidebarItemsGenerator(adminPaths, "admin")}
+        />
       </Sider>
       <Layout>
         <Header style={{ padding: 0 }} />
