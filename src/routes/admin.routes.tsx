@@ -2,6 +2,7 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateFaculty from "../pages/Admin/CreateFaculty";
 import CreateStudent from "../pages/Admin/CreateStudent";
+import AcademicSemester from "../pages/Admin/academic management/AcademicSemester";
 import { TUserPath } from "../types";
 
 export const adminPaths: TUserPath[] = [
@@ -9,6 +10,16 @@ export const adminPaths: TUserPath[] = [
     name: "Dashboard",
     path: "dashboard",
     element: <AdminDashboard />,
+  },
+  {
+    name: "Academic Management",
+    children: [
+      {
+        name: "Academic Semester",
+        path: "academic-semesters",
+        element: <AcademicSemester />,
+      },
+    ],
   },
   {
     name: "User Management",

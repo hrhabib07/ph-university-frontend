@@ -13,21 +13,21 @@ const Login = () => {
   const dispatch = useAppDispatch();
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      id: "A-0001",
-      password: "admin123456789",
+      id: "A-0002",
+      password: "admin123",
     },
   });
   const [login, { error }] = useLoginMutation();
   const onSubmit = async (userInfo: TLoginData) => {
-    const toastId = toast("logging in");
+    const toastId = toast.loading("logging in");
     const res = await login(userInfo).unwrap();
     const token = res.data.accessToken;
     const user = verifyJwtToken(token) as TAuthTokenUser;
     dispatch(setUser({ user, token }));
     navigate(`/${user.role}/dashboard`);
-    toast("user logged in successfully", { id: toastId, duration: 2000 });
+    toast.success("user logged in successfully", { id: toastId, duration: 2000 });
     if (error) {
-      toast("Something went", { id: toastId, duration: 2000 });
+      toast.error("Something went", { id: toastId, duration: 2000 });
     }
   };
   return (
