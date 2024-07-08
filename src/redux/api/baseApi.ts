@@ -19,8 +19,26 @@ const baseQueryWithRefreshToken = async (
     api,
     extraOptions,
 ) => {
-    const result = await baseQuery(args, api, extraOptions);
-    console.log(result);
+    let result = await baseQuery(args, api, extraOptions);
+    if (result.error?.status === 401) {
+        // send refresh token
+        const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
+            method: "POST",
+            credentials: "include"
+        });
+        const data = await res.json();
+        if (data.data?.accessToken) {
+            const user = (api.getState() as RootState).auth.user;
+            api.dispatch(setUser({
+                user,
+                token: data.data?.accessToken,
+            }));
+            result = await baseQuery(args, api, extraOptions);
+        } else {
+            api.dispatch(logoutUser());
+        }
+    }
+    return result;
 }
 
 export const baseApi = createApi({
@@ -37,16 +55,16 @@ export const baseApi = createApi({
 //     if (result.error?.status === 401) {
 //         const res = await fetch("/auth/refresh-token", { method: "POST", credentials: "include" });
 //         const data = await res.json()
-//         if (data?.data?.accessToken) {
-//             console.log("token", data?.data?.accessToken);
-//             const user = (api.getState() as RootState).auth.user;
-//             api.dispatch(
-//                 setUser({
-//                     user,
-//                     token: data.data.accessToken
-//                 })
-//             )
-//             result = await baseQuery(args, api, extraOptions);
+// if (data?.data?.accessToken) {
+//     console.log("token", data?.data?.accessToken);
+//     const user = (api.getState() as RootState).auth.user;
+//     api.dispatch(
+//         setUser({
+//             user,
+//             token: data.data.accessToken
+//         })
+//     )
+//     result = await baseQuery(args, api, extraOptions);
 //         } else {
 //             console.log(" no token", data?.data?.accessToken);
 //             api.dispatch(logoutUser)
