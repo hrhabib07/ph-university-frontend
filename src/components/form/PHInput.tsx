@@ -1,10 +1,10 @@
 import { Input } from "antd";
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller } from "react-hook-form";
 
 type TPHInput = {
   type: string;
   name: string;
-  label: string;
+  label?: string;
 };
 
 const PHInput = ({ type, name, label }: TPHInput) => {
