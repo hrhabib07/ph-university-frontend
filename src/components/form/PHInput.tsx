@@ -1,4 +1,5 @@
-import { useFormContext } from "react-hook-form";
+import { Input } from "antd";
+import { Controller, useFormContext } from "react-hook-form";
 
 type TPHInput = {
   type: string;
@@ -7,11 +8,13 @@ type TPHInput = {
 };
 
 const PHInput = ({ type, name, label }: TPHInput) => {
-  const { register } = useFormContext();
   return (
-    <div>
+    <div style={{ marginBottom: "1rem" }}>
       {label ? label : null}
-      <input type={type} id={name} {...register(name)} />
+      <Controller
+        name={name}
+        render={({ field }) => <Input {...field} type={type} id={name} />}
+      />
     </div>
   );
 };
