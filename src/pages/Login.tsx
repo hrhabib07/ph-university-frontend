@@ -20,8 +20,9 @@ const Login = () => {
 
   const [login, { error }] = useLoginMutation();
   const onSubmit = async (userInfo: TLoginData) => {
-    console.log(userInfo);
+    // console.log(userInfo);
     const toastId = toast.loading("logging in");
+
     const res = await login(userInfo).unwrap();
     const token = res.data.accessToken;
     // console.log(token);
