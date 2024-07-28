@@ -31,7 +31,11 @@ const Sidebar = () => {
   }
 
   return (
-    <Sider breakpoint="lg" collapsedWidth="0">
+    <Sider
+      breakpoint="lg"
+      collapsedWidth="0"
+      style={{ height: "100vh", position: "sticky", top: "0", left: "0" }}
+    >
       <div
         style={{
           display: "flex",
@@ -44,7 +48,12 @@ const Sidebar = () => {
       >
         <h2>PH University</h2>
       </div>
-      <Menu theme="dark" mode="inline" defaultSelectedKeys={["4"]} items={sidebarItems} />
+      <Menu
+        theme="dark"
+        mode="inline"
+        defaultSelectedKeys={["4"]}
+        items={sidebarItems}
+      />
     </Sider>
   );
 };

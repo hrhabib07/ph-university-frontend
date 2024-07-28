@@ -11,7 +11,7 @@ const PHSelect = ({ label, name, options }: TPHSelectProps) => {
       name={name}
       render={({ field }) => (
         <Form.Item label={label}>
-          <Select {...field} options={options} />
+          <Select {...field} options={options} size="large" />
         </Form.Item>
       )}
     />
