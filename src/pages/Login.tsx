@@ -29,12 +29,11 @@ const Login = () => {
     const user = verifyJwtToken(token) as TAuthTokenUser;
     dispatch(setUser({ user: user, token: res.data.accessToken }));
     navigate(`/${user.role}/dashboard`);
-    toast.success("user logged in successfully", {
-      id: toastId,
-      duration: 2000,
-    });
+
     if (error) {
-      toast.error("Something went", { id: toastId, duration: 2000 });
+      toast.error("Something went", { id: toastId });
+    } else {
+      toast.success("user logged in successfully", { id: toastId });
     }
   };
 
