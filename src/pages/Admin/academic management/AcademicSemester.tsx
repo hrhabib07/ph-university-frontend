@@ -1,31 +1,51 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetAllAcademicSemesterQuery } from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
+import { TAcademicSemester } from "../../../types";
 
-interface DataType {
-  key: React.Key;
-  name: string;
-  age: number;
-  address: string;
-}
+type TTableData = Pick<
+  TAcademicSemester,
+  "_id" | "name" | "year" | "startMonth" | "endMonth"
+>;
 
-const columns: TableColumnsType<DataType> = [
+const columns: TableColumnsType<TTableData> = [
   {
     title: "Name",
     dataIndex: "name",
     showSorterTooltip: { target: "full-header" },
+    filters: [
+      {
+        text: "Joe",
+        value: "Joe",
+      },
+      {
+        text: "Jim",
+        value: "Jim",
+      },
+      {
+        text: "Submenu",
+        value: "Submenu",
+        children: [
+          {
+            text: "Green",
+            value: "Green",
+          },
+          {
+            text: "Black",
+            value: "Black",
+          },
+        ],
+      },
+    ],
 
     // specify the condition of filtering result
     // here is that finding the name started with `value`
     onFilter: (value, record) => record.name.indexOf(value as string) === 0,
-    sorter: (a, b) => a.name.length - b.name.length,
-    sortDirections: ["descend"],
   },
   {
     title: "Year",
     dataIndex: "year",
     defaultSortOrder: "descend",
-    sorter: (a, b) => a.age - b.age,
   },
   {
     title: "Start Month",
@@ -37,7 +57,7 @@ const columns: TableColumnsType<DataType> = [
   },
 ];
 
-const onChange: TableProps<DataType>["onChange"] = (
+const onChange: TableProps<TTableData>["onChange"] = (
   pagination: any,
   filters: any,
   sorter: any,
@@ -47,7 +67,9 @@ const onChange: TableProps<DataType>["onChange"] = (
 };
 
 const AcademicSemester = () => {
-  const { data } = useGetAllAcademicSemesterQuery(undefined);
+  const { data } = useGetAllAcademicSemesterQuery([
+    { name: "year", value: "2024" },
+  ]);
   console.log("academic semester data", data);
   // console.log(data?.data);
   const tableData = data?.data?.map(
