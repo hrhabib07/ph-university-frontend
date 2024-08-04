@@ -2,7 +2,7 @@
 import { Table, TableColumnsType, TableProps } from "antd";
 import { useGetAllAcademicSemesterQuery } from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
 import { TAcademicSemester } from "../../../types";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 type TTableData = Pick<
   TAcademicSemester,
@@ -11,7 +11,7 @@ type TTableData = Pick<
 
 const AcademicSemester = () => {
   const [params, setParams] = useState();
-  const { data } = useGetAllAcademicSemesterQuery(params);
+  const { data, isFetching } = useGetAllAcademicSemesterQuery(params);
 
   const columns: TableColumnsType<TTableData> = [
     {
@@ -72,12 +72,14 @@ const AcademicSemester = () => {
     extra: any
   ) => {
     // console.log(extra, filters);
-    const queryParams = [];
+    const queryParams:
+      | SetStateAction<undefined>
+      | { name: string; value: any }[] = [];
     if (extra.action === "filter") {
-      filters.name?.forEach((item) =>
+      filters.name?.forEach((item: any) =>
         queryParams.push({ name: "name", value: item })
       );
-      filters.year?.forEach((item) =>
+      filters.year?.forEach((item: any) =>
         queryParams.push({ name: "year", value: item })
       );
     }
@@ -101,6 +103,7 @@ const AcademicSemester = () => {
   );
   return (
     <Table
+      loading={isFetching}
       columns={columns}
       dataSource={tableData}
       onChange={onChange}

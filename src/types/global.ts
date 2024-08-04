@@ -1,3 +1,5 @@
+import React from "react";
+
 export type TError = {
   data: {
     message: string;
@@ -10,4 +12,9 @@ export type TError = {
 export type TResponse = {
   data?: any;
   error?: TError;
+};
+
+export type TQueryParam = {
+  name: string;
+  value: boolean | React.Key;
 };
