@@ -3,6 +3,7 @@ import PHform from "../../../components/form/PHform";
 import PHInput from "../../../components/form/PHInput";
 import { useAddAcademicFacultyMutation } from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
 import { toast } from "sonner";
+import { useForm } from "react-hook-form";
 
 const CreateAcademicFaculty = () => {
   const [addAcademicFaculty] = useAddAcademicFacultyMutation();
