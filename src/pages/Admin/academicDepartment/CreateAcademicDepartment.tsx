@@ -10,7 +10,6 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { TResponse } from "../../../types/global";
-import errorMap from "zod/locales/en.js";
 
 const CreateAcademicDepartment = () => {
   const facultyNameOptions: { value: any; label: any }[] = [];
