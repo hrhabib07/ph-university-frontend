@@ -44,7 +44,7 @@ const CreateAcademicSemester = () => {
       // const errorMassage = error?.data?.massage;
       toast.error("something went wrong", { id: toastId });
     }
-    console.log(semesterData);
+    // console.log(semesterData);
   };
   const academicSemesterSchema = z.object({
     name: z.string({ required_error: "Please select a name" }),
