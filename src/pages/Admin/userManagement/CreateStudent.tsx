@@ -106,17 +106,6 @@ const CreateStudent = () => {
 
               <Divider>Contact Info.</Divider>
 
-              {/* 
-
-      
-      email: "habib725@example.com",
-      contactNo: "0987654321",
-      emergencyContactNo: "1234567890",
-      presentAddress: "789 Pine St, Big City",
-      permanentAddress: "321 Oak St, Small Town",
-
-*/}
-
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                 <PHInput type="email" name="email" label="Email"></PHInput>
               </Col>
@@ -146,6 +135,85 @@ const CreateStudent = () => {
                   type="text"
                   name="permanentAddress"
                   label="Permanent Address "
+                ></PHInput>
+              </Col>
+
+              <Divider>Guardian Info.</Divider>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.fatherName"
+                  label="Father Name"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.fatherOccupation"
+                  label="Father Occupation"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.fatherContactNo"
+                  label="Father Contact No"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.motherName"
+                  label="Mother Name"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.motherOccupation"
+                  label="Mother Occupation"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="guardian.motherContactNo"
+                  label="Mother Contact No"
+                ></PHInput>
+              </Col>
+              {/* localGuardian: {
+        name: "David Green",
+        occupation: "Lawyer",
+        contactNo: "0987654324",
+        address: "456 Maple St, Big City",
+      }, */}
+              <Divider>Local Guardian Info.</Divider>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="localGuardian.name"
+                  label="Name"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="localGuardian.occupation"
+                  label="Occupation"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="localGuardian.contactNo"
+                  label="Contact No."
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="localGuardian.address"
+                  label="Address"
                 ></PHInput>
               </Col>
             </Row>
