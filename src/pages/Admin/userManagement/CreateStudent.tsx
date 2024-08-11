@@ -7,6 +7,7 @@ import {
   genderOptions,
   monthOptions,
 } from "../../../constant/global";
+import PHDatePicker from "../../../components/form/PHDatePicker";
 
 const CreateStudent = () => {
   const dummyStudentData = {
@@ -90,11 +91,15 @@ const CreateStudent = () => {
                 ></PHSelect>
               </Col>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                <PHInput
+                <PHDatePicker
+                  name="dateOfBirth"
+                  label="Date of Birth"
+                ></PHDatePicker>
+                {/* <PHInput
                   type="text"
                   name="dateOfBirth"
                   label="Date of Birth"
-                ></PHInput>
+                ></PHInput> */}
               </Col>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                 <PHSelect
