@@ -6,10 +6,6 @@ type TPHDatePicker = {
   label?: string;
 };
 
-const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-  console.log(date, dateString);
-};
-
 const PHDatePicker = ({ name, label }: TPHDatePicker) => {
   return (
     <div style={{ marginBottom: "1rem" }}>
@@ -18,12 +14,7 @@ const PHDatePicker = ({ name, label }: TPHDatePicker) => {
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <DatePicker
-              {...field}
-              onChange={onChange}
-              style={{ width: "100%" }}
-              size="large"
-            />
+            <DatePicker {...field} style={{ width: "100%" }} size="large" />
             {error && <p style={{ color: "red" }}>{error.message}</p>}
           </Form.Item>
         )}
