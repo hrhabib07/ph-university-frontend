@@ -1,6 +1,12 @@
 import { Button, Col, Divider, Row } from "antd";
 import PHform from "../../../components/form/PHform";
 import PHInput from "../../../components/form/PHInput";
+import PHSelect from "../../../components/form/PHSelect";
+import {
+  bloodGroupOptions,
+  genderOptions,
+  monthOptions,
+} from "../../../constant/global";
 
 const CreateStudent = () => {
   const dummyStudentData = {
@@ -12,11 +18,12 @@ const CreateStudent = () => {
         lastName: "Smith",
       },
       gender: "female",
+      bloodGroup: "A+",
+
       dateOfBirth: "1998-04-15",
       email: "habib725@example.com",
       contactNo: "0987654321",
       emergencyContactNo: "1234567890",
-      bloodGroup: "A+",
       presentAddress: "789 Pine St, Big City",
       permanentAddress: "321 Oak St, Small Town",
       guardian: {
@@ -76,7 +83,11 @@ const CreateStudent = () => {
                 ></PHInput>
               </Col>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
-                <PHInput type="text" name="gender" label="Gender"></PHInput>
+                <PHSelect
+                  name="gender"
+                  label="Gender"
+                  options={genderOptions}
+                ></PHSelect>
               </Col>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                 <PHInput
@@ -86,10 +97,55 @@ const CreateStudent = () => {
                 ></PHInput>
               </Col>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHSelect
+                  label="Blood Group"
+                  name="bloodGroup"
+                  options={bloodGroupOptions}
+                ></PHSelect>
+              </Col>
+
+              <Divider>Contact Info.</Divider>
+
+              {/* 
+
+      
+      email: "habib725@example.com",
+      contactNo: "0987654321",
+      emergencyContactNo: "1234567890",
+      presentAddress: "789 Pine St, Big City",
+      permanentAddress: "321 Oak St, Small Town",
+
+*/}
+
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput type="email" name="email" label="Email"></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
                 <PHInput
                   type="text"
-                  name="bloodGroup"
-                  label="Blood Group"
+                  name="contactNo"
+                  label="Contact No"
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="emergencyContactNo"
+                  label="Emergency Contact "
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="presentAddress"
+                  label="Present Address "
+                ></PHInput>
+              </Col>
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <PHInput
+                  type="text"
+                  name="permanentAddress"
+                  label="Permanent Address "
                 ></PHInput>
               </Col>
             </Row>
