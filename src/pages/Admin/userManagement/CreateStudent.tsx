@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Row } from "antd";
+import { Button, Col, Divider, Form, Input, Row } from "antd";
 import PHform from "../../../components/form/PHform";
 import PHInput from "../../../components/form/PHInput";
 import PHSelect from "../../../components/form/PHSelect";
@@ -13,6 +13,8 @@ import {
   useGetAllAcademicSemesterQuery,
 } from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
 import { useAddStudentMutation } from "../../../redux/features/admin/userManagement/userMangement";
+import { Controller } from "react-hook-form";
+import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 
 const CreateStudent = () => {
   const dummyStudentData = {
@@ -114,6 +116,7 @@ const CreateStudent = () => {
     // console.log(studentData);
     const formData = new FormData();
     formData.append("data", JSON.stringify(studentData));
+    formData.append("file", data.image);
     addStudent(formData);
 
     // console.log(Object.fromEntries(formData));
@@ -122,7 +125,7 @@ const CreateStudent = () => {
     <>
       <Row>
         <Col span={24}>
-          <PHform onSubmit={handleSubmit} defaultValues={studentDefaultValues}>
+          <PHform onSubmit={handleSubmit}>
             <Row gutter={8}>
               <Divider>Personal Info.</Divider>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
@@ -170,6 +173,36 @@ const CreateStudent = () => {
                   name="bloogGroup"
                   options={bloodGroupOptions}
                 ></PHSelect>
+              </Col>
+              {/* <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <Controller
+                  name="image"
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <Form.Item label="Picture">
+                      <Input
+                        type="file"
+                        value={value?.fileName}
+                        {...field}
+                        onChange={(e) => onChange(e.target.files?.[0])}
+                      />
+                    </Form.Item>
+                  )}
+                />
+              </Col> */}
+              <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
+                <Controller
+                  name="image"
+                  render={({ field: { onChange, value, ...field } }) => (
+                    <Form.Item label="Picture">
+                      <Input
+                        type="file"
+                        value={value?.fileName}
+                        {...field}
+                        onChange={(e) => onChange(e.target.files?.[0])}
+                      />
+                    </Form.Item>
+                  )}
+                />
               </Col>
               <Divider>Contact Info.</Divider>
               <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>

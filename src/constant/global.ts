@@ -21,7 +21,7 @@ export const monthOptions = monthsName.map((month) => ({
 export const gender = ["Male", "Female"];
 
 export const genderOptions = gender.map((gen) => ({
-  value: gen,
+  value: gen.toLowerCase(),
   label: gen,
 }));
 
