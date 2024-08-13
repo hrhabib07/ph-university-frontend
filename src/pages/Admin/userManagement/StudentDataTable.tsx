@@ -11,14 +11,15 @@ import { TStudent } from "../../../types";
 import { SetStateAction, useState } from "react";
 import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement/userMangement";
 import { TQueryParam } from "../../../types/global";
+import { Link } from "react-router-dom";
 
 type TTableData = Pick<TStudent, "_id" | "name" | "id">;
 
 const StudentDataTable = () => {
   const [params, setParams] = useState<TQueryParam[]>([]);
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(1);
   const { data, isFetching } = useGetAllStudentsQuery([
-    { name: "limit", value: 3 },
+    { name: "limit", value: 10 },
     { name: "page", value: page },
     { name: "sort", value: "id" },
     ...params,
@@ -35,12 +36,25 @@ const StudentDataTable = () => {
       showSorterTooltip: { target: "full-header" },
     },
     {
+      title: "Email",
+      dataIndex: "email",
+      showSorterTooltip: { target: "full-header" },
+    },
+    {
+      title: "Contact No",
+      dataIndex: "contactNo",
+      showSorterTooltip: { target: "full-header" },
+    },
+    {
       title: "Action",
       key: "x",
-      render: () => {
+      render: (item) => {
+        // console.log(item);
         return (
           <Space>
-            <Button>Details</Button>
+            <Link to={`/admin/student-data/${item.key}`}>
+              <Button>Details</Button>
+            </Link>
             <Button>Update</Button>
             <Button>Block</Button>
           </Space>
@@ -72,10 +86,18 @@ const StudentDataTable = () => {
   };
   const metaData = data?.meta;
   const tableData = data?.data?.map(
-    (item: { fullName: any; _id: any; id: any }) => ({
+    (item: {
+      fullName: any;
+      _id: any;
+      id: any;
+      email: string;
+      contactNo: string;
+    }) => ({
       key: item?._id,
       fullName: item?.fullName,
-      id: item.id,
+      id: item?.id,
+      contactNo: item?.contactNo,
+      email: item?.email,
     })
   );
   return (

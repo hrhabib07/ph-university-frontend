@@ -10,6 +10,7 @@ import AcademicFaculty from "../pages/Admin/academicFaculty/AcademicFaculty";
 import CreateAcademicFaculty from "../pages/Admin/academicFaculty/CreateAcademicFaculty";
 import { TUserPath } from "../types";
 import StudentDataTable from "../pages/Admin/userManagement/StudentDataTable";
+import StudentDetails from "../pages/Admin/userManagement/StudentDetails";
 
 export const adminPaths: TUserPath[] = [
   {
@@ -64,6 +65,10 @@ export const adminPaths: TUserPath[] = [
         name: "Students",
         path: "students-data",
         element: <StudentDataTable />,
+      },
+      {
+        path: "student-data/:studentId",
+        element: <StudentDetails />,
       },
       {
         name: "Crate Admin",
