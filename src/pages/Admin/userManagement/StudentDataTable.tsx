@@ -1,5 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Button, Space, Table, TableColumnsType, TableProps } from "antd";
+import {
+  Button,
+  Pagination,
+  Space,
+  Table,
+  TableColumnsType,
+  TableProps,
+} from "antd";
 import { TStudent } from "../../../types";
 import { SetStateAction, useState } from "react";
 import { useGetAllStudentsQuery } from "../../../redux/features/admin/userManagement/userMangement";
@@ -63,7 +70,7 @@ const StudentDataTable = () => {
     }
     setParams(queryParams);
   };
-
+  const metaData = data?.meta;
   const tableData = data?.data?.map(
     (item: { fullName: any; _id: any; id: any }) => ({
       key: item?._id,
@@ -72,13 +79,21 @@ const StudentDataTable = () => {
     })
   );
   return (
-    <Table
-      loading={isFetching}
-      columns={columns}
-      dataSource={tableData}
-      onChange={onChange}
-      showSorterTooltip={{ target: "sorter-icon" }}
-    />
+    <>
+      <Table
+        loading={isFetching}
+        columns={columns}
+        dataSource={tableData}
+        onChange={onChange}
+        pagination={false}
+        showSorterTooltip={{ target: "sorter-icon" }}
+      />
+      <Pagination
+        onChange={(value) => setPage(value)}
+        total={metaData?.total}
+        pageSize={metaData?.limit}
+      />
+    </>
   );
 };
 
