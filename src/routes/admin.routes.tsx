@@ -9,6 +9,7 @@ import CreateAcademicDepartment from "../pages/Admin/academicDepartment/CreateAc
 import AcademicFaculty from "../pages/Admin/academicFaculty/AcademicFaculty";
 import CreateAcademicFaculty from "../pages/Admin/academicFaculty/CreateAcademicFaculty";
 import { TUserPath } from "../types";
+import StudentDataTable from "../pages/Admin/userManagement/StudentDataTable";
 
 export const adminPaths: TUserPath[] = [
   {
@@ -55,6 +56,16 @@ export const adminPaths: TUserPath[] = [
     name: "User Management",
     children: [
       {
+        name: "Create Student",
+        path: "create-student",
+        element: <CreateStudent />,
+      },
+      {
+        name: "Students",
+        path: "students-data",
+        element: <StudentDataTable />,
+      },
+      {
         name: "Crate Admin",
         path: "create-admin",
         element: <CreateAdmin />,
@@ -63,11 +74,6 @@ export const adminPaths: TUserPath[] = [
         name: "Create Faculty",
         path: "create-faculty",
         element: <CreateFaculty />,
-      },
-      {
-        name: "Create Student",
-        path: "create-student",
-        element: <CreateStudent />,
       },
       {
         name: "Create Member",

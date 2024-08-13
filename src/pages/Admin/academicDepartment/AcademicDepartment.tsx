@@ -1,9 +1,5 @@
 import { Table } from "antd";
-import {
-  useGetAllAcademicDepartmentQuery,
-  useGetAllAcademicFacultyQuery,
-} from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
-import AcademicFaculty from "../academicFaculty/AcademicFaculty";
+import { useGetAllAcademicDepartmentQuery } from "../../../redux/features/admin/academicManagement/AcademicManagement.api";
 
 interface DataType {
   key: React.Key;
