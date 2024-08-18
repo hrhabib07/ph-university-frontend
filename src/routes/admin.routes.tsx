@@ -12,6 +12,7 @@ import { TUserPath } from "../types";
 import StudentDataTable from "../pages/Admin/userManagement/StudentDataTable";
 import StudentDetails from "../pages/Admin/userManagement/StudentDetails";
 import AdminDataTable from "../pages/Admin/userManagement/AdminDataTable";
+import AdminDetails from "../pages/Admin/userManagement/AdminDetails";
 
 export const adminPaths: TUserPath[] = [
   {
@@ -80,6 +81,10 @@ export const adminPaths: TUserPath[] = [
         name: "Admins",
         path: "admins-data",
         element: <AdminDataTable />,
+      },
+      {
+        path: "admin-data/:adminId",
+        element: <AdminDetails />,
       },
       {
         name: "Create Faculty",

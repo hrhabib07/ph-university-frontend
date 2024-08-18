@@ -55,6 +55,15 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleAdmin: builder.query({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `/admins/${data}`,
+          method: "GET",
+        };
+      },
+    }),
     addStudent: builder.mutation({
       query: (data) => ({
         url: "/users/create-student",
@@ -78,4 +87,5 @@ export const {
   useGetAllStudentsQuery,
   useGetAllAdminsQuery,
   useGetSingleStudentQuery,
+  useGetSingleAdminQuery,
 } = userManagementApi;
