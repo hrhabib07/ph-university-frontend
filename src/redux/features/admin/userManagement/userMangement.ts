@@ -7,9 +7,10 @@ const userManagementApi = baseApi.injectEndpoints({
     getAllStudents: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
-        console.log(args);
         if (args) {
-          args.forEach((item) => params.append(item.name, item.value));
+          args?.forEach((item: { name: string; value: string }) =>
+            params.append(item.name, item.value)
+          );
         }
         return {
           url: "/students",
@@ -24,6 +25,15 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleStudent: builder.query({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `/students/${data}`,
+          method: "GET",
+        };
+      },
+    }),
     addStudent: builder.mutation({
       query: (data) => ({
         url: "/users/create-student",
@@ -34,5 +44,8 @@ const userManagementApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useAddStudentMutation, useGetAllStudentsQuery } =
-  userManagementApi;
+export const {
+  useAddStudentMutation,
+  useGetAllStudentsQuery,
+  useGetSingleStudentQuery,
+} = userManagementApi;
