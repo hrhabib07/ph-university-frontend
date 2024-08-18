@@ -13,6 +13,8 @@ import StudentDataTable from "../pages/Admin/userManagement/StudentDataTable";
 import StudentDetails from "../pages/Admin/userManagement/StudentDetails";
 import AdminDataTable from "../pages/Admin/userManagement/AdminDataTable";
 import AdminDetails from "../pages/Admin/userManagement/AdminDetails";
+import FacultyDataTable from "../pages/Admin/userManagement/FacultyDataTable";
+import FacultyDetails from "../pages/Admin/userManagement/FacultyDetails";
 
 export const adminPaths: TUserPath[] = [
   {
@@ -92,9 +94,13 @@ export const adminPaths: TUserPath[] = [
         element: <CreateFaculty />,
       },
       {
-        name: "Create Member",
-        path: "create-member",
-        element: <CreateStudent />,
+        name: "Faculties",
+        path: "faculty-data",
+        element: <FacultyDataTable />,
+      },
+      {
+        path: "faculty-data/:facultyId",
+        element: <FacultyDetails />,
       },
     ],
   },

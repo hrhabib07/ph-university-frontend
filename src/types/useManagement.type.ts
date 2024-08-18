@@ -111,3 +111,26 @@ export type TAdmin = {
     idDeleted: boolean;
   };
 };
+
+export type TFaculty = {
+  password: string; // Ideally, this should be hashed
+  faculty: {
+    designation: string; // e.g., "Assistant Professor"
+    name: {
+      firstName: string;
+      middleName?: string; // Optional property
+      lastName: string;
+    };
+    gender: "male" | "female" | "other"; // Assuming gender is one of these options
+    dateOfBirth: string; // ISO date string, e.g., "1975-08-15T00:00:00.000Z"
+    email: string;
+    contactNo: string;
+    emergencyContactNo: string;
+    bloogGroup?: string; // Optional property
+    presentAddress: string;
+    permanentAddress: string;
+    profileImg?: string; // Optional property, URL to profile image
+    academicDepartment: string; // Assuming it's an ID or code
+    isDeleted: boolean;
+  };
+};

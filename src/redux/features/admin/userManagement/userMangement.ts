@@ -46,6 +46,27 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getAllFaculties: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args?.forEach((item: { name: string; value: string }) =>
+            params.append(item.name, item.value)
+          );
+        }
+        return {
+          url: "/faculties",
+          method: "GET",
+          params,
+        };
+      },
+      transformErrorResponse: (response: TResponseRedux<TStudent[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
     getSingleStudent: builder.query({
       query: (data) => {
         console.log(data);
@@ -64,6 +85,15 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getSingleFaculty: builder.query({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `/faculties/${data}`,
+          method: "GET",
+        };
+      },
+    }),
     addStudent: builder.mutation({
       query: (data) => ({
         url: "/users/create-student",
@@ -78,14 +108,24 @@ const userManagementApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    addFaculty: builder.mutation({
+      query: (data) => ({
+        url: "/users/create-faculty",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
 export const {
   useAddStudentMutation,
   useAddAdminMutation,
+  useAddFacultyMutation,
   useGetAllStudentsQuery,
   useGetAllAdminsQuery,
+  useGetAllFacultiesQuery,
   useGetSingleStudentQuery,
   useGetSingleAdminQuery,
+  useGetSingleFacultyQuery,
 } = userManagementApi;
