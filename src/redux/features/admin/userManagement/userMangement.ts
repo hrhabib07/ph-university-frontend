@@ -25,6 +25,27 @@ const userManagementApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getAllAdmins: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args?.forEach((item: { name: string; value: string }) =>
+            params.append(item.name, item.value)
+          );
+        }
+        return {
+          url: "/admins",
+          method: "GET",
+          params,
+        };
+      },
+      transformErrorResponse: (response: TResponseRedux<TStudent[]>) => {
+        return {
+          data: response.data,
+          meta: response.meta,
+        };
+      },
+    }),
     getSingleStudent: builder.query({
       query: (data) => {
         console.log(data);
@@ -53,7 +74,8 @@ const userManagementApi = baseApi.injectEndpoints({
 
 export const {
   useAddStudentMutation,
-  useGetAllStudentsQuery,
-  useGetSingleStudentQuery,
   useAddAdminMutation,
+  useGetAllStudentsQuery,
+  useGetAllAdminsQuery,
+  useGetSingleStudentQuery,
 } = userManagementApi;

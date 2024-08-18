@@ -87,3 +87,27 @@ export type TStudent = {
   academicFaculty: TAcademicFaculty;
   fullName: string;
 };
+
+export type TAdmin = {
+  password: string;
+  admin: {
+    designation: string;
+    name: {
+      firstName: string;
+      middleName?: string;
+      lastName: string;
+    };
+    gender: string;
+    dateOfBirth: string; // Consider using Date if you want to handle it as a Date object
+    email: string;
+    contactNo: string;
+    emergencyContactNo: string;
+    presentAddress: string;
+    permanentAddress: string;
+    profileImage: string;
+    managementDepartment: string;
+    profileImg: string;
+    bloogGroup: string;
+    idDeleted: boolean;
+  };
+};
