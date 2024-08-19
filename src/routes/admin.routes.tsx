@@ -15,6 +15,12 @@ import AdminDataTable from "../pages/Admin/userManagement/AdminDataTable";
 import AdminDetails from "../pages/Admin/userManagement/AdminDetails";
 import FacultyDataTable from "../pages/Admin/userManagement/FacultyDataTable";
 import FacultyDetails from "../pages/Admin/userManagement/FacultyDetails";
+import SemesterRegistration from "../pages/Admin/CourseManagement/SemesterRegistration";
+import CreateCourse from "../pages/Admin/CourseManagement/CreateCourse";
+import OfferedCourse from "../pages/Faculty/OfferedCourse";
+import OfferCourse from "../pages/Admin/CourseManagement/OfferCourse";
+import Courses from "../pages/Admin/CourseManagement/Courses";
+import RegisteredSemesters from "../pages/Admin/CourseManagement/RegisteredSemesters";
 
 export const adminPaths: TUserPath[] = [
   {
@@ -101,6 +107,41 @@ export const adminPaths: TUserPath[] = [
       {
         path: "faculty-data/:facultyId",
         element: <FacultyDetails />,
+      },
+    ],
+  },
+  {
+    name: "Course management",
+    children: [
+      {
+        name: "Semester Registration",
+        path: "semester-registration",
+        element: <SemesterRegistration />,
+      },
+      {
+        name: "Create Course",
+        path: "create-course",
+        element: <CreateCourse />,
+      },
+      {
+        name: "Registered Semesters",
+        path: "registered-semesters",
+        element: <RegisteredSemesters />,
+      },
+      {
+        name: "Courses",
+        path: "courses",
+        element: <Courses />,
+      },
+      {
+        name: "Offer Course",
+        path: "offer-course",
+        element: <OfferCourse />,
+      },
+      {
+        name: "Offered Courses",
+        path: "offered-courses",
+        element: <OfferedCourse />,
       },
     ],
   },
