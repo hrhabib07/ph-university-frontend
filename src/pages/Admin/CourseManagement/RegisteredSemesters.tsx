@@ -21,17 +21,19 @@ type TTableData = Pick<
 >;
 
 const items = [
-  { label: "UPCOMING", value: "UPCOMING" },
-  { label: "ONGOING", value: "ONGOING" },
-  { label: "ENDED", value: "ENDED" },
+  { label: "UPCOMING", key: "UPCOMING" },
+  { label: "ONGOING", key: "ONGOING" },
+  { label: "ENDED", key: "ENDED" },
 ];
 
 const RegisteredSemester = () => {
+  const [semesterId, setSemesterId] = useState();
   const [params, setParams] = useState();
   const { data, isFetching } = useGetAllRegisteredSemesterQuery(params);
   console.log(data);
   const handleStatusDropdown = (data) => {
-    console.log(data);
+    console.log("semester id", semesterId);
+    console.log("status", data.key);
   };
   const menuProps = {
     items,
@@ -100,10 +102,10 @@ const RegisteredSemester = () => {
         // console.log("item", item);
         return (
           <Space>
-            <Dropdown menu={menuProps}>
-              <Button>
+            <Dropdown menu={menuProps} trigger={["click"]}>
+              <Button onClick={() => setSemesterId(item.key)}>
                 <Space>
-                  {item.status}
+                  Update
                   <DownOutlined />
                 </Space>
               </Button>
