@@ -17,10 +17,10 @@ import FacultyDataTable from "../pages/Admin/userManagement/FacultyDataTable";
 import FacultyDetails from "../pages/Admin/userManagement/FacultyDetails";
 import SemesterRegistration from "../pages/Admin/CourseManagement/SemesterRegistration";
 import CreateCourse from "../pages/Admin/CourseManagement/CreateCourse";
-import OfferedCourse from "../pages/Faculty/OfferedCourse";
 import OfferCourse from "../pages/Admin/CourseManagement/OfferCourse";
 import Courses from "../pages/Admin/CourseManagement/Courses";
 import RegisteredSemesters from "../pages/Admin/CourseManagement/RegisteredSemesters";
+import OfferedCourse from "../pages/Admin/CourseManagement/OfferedCourse";
 
 export const adminPaths: TUserPath[] = [
   {
