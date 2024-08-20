@@ -14,6 +14,7 @@ import { SetStateAction, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 
 import {
+  useAddFacultiesMutation,
   useGetAllCoursesQuery,
   useGetAllRegisteredSemesterQuery,
   useUpdateRegisteredSemesterMutation,
@@ -56,7 +57,7 @@ const Courses = () => {
       key: "x",
       render: (item) => {
         // console.log("item", item);
-        return <AssignFacultyModal data={item} />;
+        return <AssignFacultyModal facultyInfo={item} />;
       },
       width: "1%",
     },
@@ -85,10 +86,11 @@ const Courses = () => {
   );
 };
 
-const AssignFacultyModal = ({ data }) => {
+const AssignFacultyModal = ({ facultyInfo }) => {
   // console.log(data);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: facultiesData } = useGetAllFacultiesQuery(undefined);
+  const [addFaculties] = useAddFacultiesMutation();
   // console.log(facultiesData.data);
   const facultyOption = facultiesData?.data?.map((item) => ({
     value: item._id,
@@ -107,7 +109,13 @@ const AssignFacultyModal = ({ data }) => {
     setIsModalOpen(false);
   };
   const handleSubmit = (data) => {
-    console.log(data);
+    const facultyData = {
+      courseId: facultyInfo.key,
+      data,
+    };
+    // console.log(facultyData);
+    addFaculties(facultyData);
+    // addFaculties(facultyData);
   };
   return (
     <>
@@ -117,6 +125,7 @@ const AssignFacultyModal = ({ data }) => {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
+        footer={null}
       >
         <PHform onSubmit={handleSubmit}>
           <PHSelect
@@ -125,7 +134,9 @@ const AssignFacultyModal = ({ data }) => {
             label="Faculty"
             options={facultyOption}
           ></PHSelect>
-          <Button htmlType="submit">Submit</Button>
+          <Button htmlType="submit" onClick={handleOk}>
+            Submit
+          </Button>
         </PHform>
       </Modal>
     </>
