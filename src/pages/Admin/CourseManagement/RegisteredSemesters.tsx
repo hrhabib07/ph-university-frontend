@@ -12,7 +12,10 @@ import { TAcademicSemester } from "../../../types";
 import { SetStateAction, useState } from "react";
 import { DownOutlined } from "@ant-design/icons";
 
-import { useGetAllRegisteredSemesterQuery } from "../../../redux/features/admin/courseManagement/courseManagement";
+import {
+  useGetAllRegisteredSemesterQuery,
+  useUpdateRegisteredSemesterMutation,
+} from "../../../redux/features/admin/courseManagement/courseManagement";
 import moment from "moment";
 
 type TTableData = Pick<
@@ -30,10 +33,16 @@ const RegisteredSemester = () => {
   const [semesterId, setSemesterId] = useState();
   const [params, setParams] = useState();
   const { data, isFetching } = useGetAllRegisteredSemesterQuery(params);
+
+  const [updateRegisteredSemester] = useUpdateRegisteredSemesterMutation();
+
   console.log(data);
   const handleStatusDropdown = (data) => {
-    console.log("semester id", semesterId);
-    console.log("status", data.key);
+    const updateSemesterRegistrationData = {
+      id: semesterId,
+      data: { status: data.key },
+    };
+    updateRegisteredSemester(updateSemesterRegistrationData);
   };
   const menuProps = {
     items,

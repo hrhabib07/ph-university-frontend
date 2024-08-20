@@ -119,14 +119,14 @@ export const adminPaths: TUserPath[] = [
         element: <SemesterRegistration />,
       },
       {
-        name: "Create Course",
-        path: "create-course",
-        element: <CreateCourse />,
-      },
-      {
         name: "Registered Semesters",
         path: "registered-semesters",
         element: <RegisteredSemesters />,
+      },
+      {
+        name: "Create Course",
+        path: "create-course",
+        element: <CreateCourse />,
       },
       {
         name: "Courses",
